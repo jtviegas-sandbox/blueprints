@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.8.RELEASE</version>
+    </parent>
+
+    <groupId>com.tgedr.labs.microservices.blueprint</groupId>
+    <artifactId>microsvc-blueprint-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>microsvc-blueprint-parent</name>
+    <description>microservices blueprint project</description>
+
+    <modules>
+        <module>microsvc-blueprint-model</module>
+        <module>microsvc-blueprint-store</module>
+        <module>microsvc-blueprint-common</module>
+        <module>microsvc-blueprint-solver-api</module>
+        <module>microsvc-blueprint-gw-api</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <springfox.swagger2.version>2.8.0</springfox.swagger2.version>
+        <commons.lang3.version>3.7</commons.lang3.version>
+        <junit.version>4.12</junit.version>
+        <maven-pmd-plugin.version>3.10.0</maven-pmd-plugin.version>
+        <apiclient.version>0.0.4</apiclient.version>
+        <yasson.version>1.0</yasson.version>
+        <javax.json.version>1.1</javax.json.version>
+        <guava.version>25.1-jre</guava.version>
+        <javaee-api.version>8.0</javaee-api.version>
+        <google-or-tools.version>6.7.2</google-or-tools.version>
+        <lombok.version>1.18.10</lombok.version>
+        <unirest.version>3.4.03</unirest.version>
+        <aws.java.sdk.dynamodb.version>1.11.64</aws.java.sdk.dynamodb.version>
+        <spring.data.dynamodb.version> 5.1.0</spring.data.dynamodb.version>
+        <jacoco.version>0.8.5</jacoco.version>
+        <test.coverage>0.05</test.coverage>
+        <micrometer.version>1.3.4</micrometer.version>
+        <dd.trace.api.version>0.43.0</dd.trace.api.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- swagger stuff -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${springfox.swagger2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${springfox.swagger2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-bean-validators</artifactId>
+                <version>${springfox.swagger2.version}</version>
+            </dependency>
+
+            <!-- OTHER 3RD PARTY -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons.lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.github.oliviercailloux</groupId>
+                <artifactId>google-or-tools</artifactId>
+                <version>${google-or-tools.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.konghq</groupId>
+                <artifactId>unirest-java</artifactId>
+                <version>${unirest.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.konghq</groupId>
+                <artifactId>unirest-objectmapper-jackson</artifactId>
+                <version>${unirest.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.amazonaws</groupId>
+                <artifactId>aws-java-sdk-dynamodb</artifactId>
+                <version>${aws.java.sdk.dynamodb.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.derjust</groupId>
+                <artifactId>spring-data-dynamodb</artifactId>
+                <version>${spring.data.dynamodb.version}</version>
+            </dependency>
+            <!-- TEST -->
+            <dependency>
+                <groupId>io.micrometer</groupId>
+                <artifactId>micrometer-registry-datadog</artifactId>
+                <version>${micrometer.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <scope>provided</scope>
+                <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.datadoghq</groupId>
+                <artifactId>dd-trace-api</artifactId>
+                <version>${dd.trace.api.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>${maven-pmd-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>check pmd and fail</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <failOnViolation>false</failOnViolation>
+                    <printFailingErrors>true</printFailingErrors>
+                    <rulesets>
+                        <ruleset>${maven.multiModuleProjectDirectory}/ruleset.xml</ruleset>
+                    </rulesets>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <rule>
+                                    <element>PACKAGE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>LINE</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>${test.coverage}</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                            <excludes>
+                               <exclude>**/*Exception.*</exclude>
+                                <exclude>**/*Boot.*</exclude>
+                                <exclude>**/*Config.*</exclude>
+                                <exclude>**/StateManagerImpl.*</exclude>
+                                <exclude>**/KnapsackImpl.*</exclude>
+                                <exclude>**/ExceptionResponse.*</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <configuration>
+                        <!-- see: https://stackoverflow.com/questions/53010200/maven-surefire-could-not-find-forkedbooter-class
+                        <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine> -->
+                        <argLine>@{argLine} -Xmx1024m</argLine>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>

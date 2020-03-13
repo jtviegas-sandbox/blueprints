@@ -1,0 +1,245 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: store
+  labels:
+    team: tgedr
+    project: microsvc-blueprint
+    api: store
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      team: tgedr
+      project: microsvc-blueprint
+      api: store
+  template:
+    metadata:
+      labels:
+        team: tgedr
+        project: microsvc-blueprint
+        api: store
+    spec:
+      containers:
+      - name: store
+        image: amazon/dynamodb-local
+        livenessProbe:
+          tcpSocket:
+            port: 8000
+        ports:
+        - name: http
+          containerPort: 8000
+          protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: solver
+  labels:
+    team: tgedr
+    project: microsvc-blueprint
+    api: solver
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      team: tgedr
+      project: microsvc-blueprint
+      api: solver
+  template:
+    metadata:
+#      annotations:
+#        ad.datadoghq.com/solver.logs: '[{"team:tgedr","api":"solver","project":"microsvc-blueprint"}]'
+      labels:
+        team: tgedr
+        project: microsvc-blueprint
+        api: solver
+    spec:
+      containers:
+        - name: solver
+          image: caquicode/microsvc-blueprint-solver-api
+          livenessProbe:
+            initialDelaySeconds: 300
+            httpGet:
+              path: /actuator/health
+              port: 9020
+          env:
+            # common variables
+            - name: SERVER_PORT
+              value: "9020"
+            # api specific variables
+            - name: IO_BLOCKING_COEFFICIENT
+              value: "0.5"
+            # datadog agent variables
+            - name: DD_AGENT_HOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: DD_TRACE_ENABLED
+              value: "true"
+            - name: DD_TRACE_ANALYTICS_ENABLED
+              value: "true"
+            - name: DD_LOGS_INJECTION
+              value: "true"
+            - name: DD_SITE
+              value: "datadoghq.eu"
+            - name: DD_SERVICE_NAME
+              value: "solver"
+            - name: DD_TRACE_REPORT_HOSTNAME
+              value: "true"
+            - name: DD_ENTITY_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.uid
+            - name: DD_TAGS
+              value: "team:tgedr,project:microsvc-blueprint,api:solver,env:dev"
+            # micrometer-datadog variables
+            - name: MANAGEMENT_METRICS_EXPORT_DATADOG_ENABLED
+              value: "true"
+            - name: MANAGEMENT_METRICS_EXPORT_DATADOG_APIKEY
+              valueFrom:
+                secretKeyRef:
+                  name: datadog-secret
+                  key: api-key
+            - name: MANAGEMENT_METRICS_EXPORT_DATADOG_URI
+              value: "https://api.datadoghq.eu"
+            - name: MANAGEMENT_METRICS_EXPORT_DATADOG_STEP
+              value: "30s"
+            # metric tags
+            - name: MANAGEMENT_METRICS_TAGS_TEAM
+              value: "tgedr"
+            - name: MANAGEMENT_METRICS_TAGS_PROJECT
+              value: "microsvc-blueprint"
+            - name: MANAGEMENT_METRICS_TAGS_API
+              value: "solver"
+            - name: MANAGEMENT_METRICS_TAGS_ENV
+              value: "dev"
+            # store variables
+            - name: AMAZON_DYNAMODB_ENDPOINT
+              value: "http://store.default.svc.cluster.local:8000"
+            - name: AMAZON_AWS_ACCESSKEY
+              value: "test1"
+            - name: AMAZON_AWS_SECRETKEY
+              value: "test231"
+            - name: SPRING_DATA_DYNAMODB_ENTITY2DDL_AUTO
+              value: "create"
+            - name: SPRING_DATA_DYNAMODB_ENTITY2DDL_GSIPROJECTIONTYPE
+              value: "ALL"
+            - name: SPRING_DATA_DYNAMODB_ENTITY2DDL_READCAPACITY
+              value: "10"
+            - name: SPRING_DATA_DYNAMODB_ENTITY2DDL_WRITECAPACITY
+              value: "1"
+          ports:
+            - name: http
+              containerPort: 9020
+              protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gw
+  labels:
+    team: tgedr
+    project: microsvc-blueprint
+    api: gw
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      team: tgedr
+      project: microsvc-blueprint
+      api: gw
+  template:
+    metadata:
+#      annotations:
+#        ad.datadoghq.com/api.logs: '[{"team:tgedr","api":"gw","project":"microsvc-blueprint"}]'
+      labels:
+        team: tgedr
+        project: microsvc-blueprint
+        api: gw
+    spec:
+      containers:
+        - name: gw
+          image: caquicode/microsvc-blueprint-gw-api
+          livenessProbe:
+            initialDelaySeconds: 300
+            httpGet:
+              path: /actuator/health
+              port: 9030
+          env:
+            # common variables
+            - name: SERVER_PORT
+              value: "9030"
+            # api specific variables
+            # datadog agent variables
+            - name: DD_AGENT_HOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
+            - name: DD_TRACE_ENABLED
+              value: "true"
+            - name: DD_TRACE_ANALYTICS_ENABLED
+              value: "true"
+            - name: DD_LOGS_INJECTION
+              value: "true"
+            - name: DD_SITE
+              value: "datadoghq.eu"
+            - name: DD_SERVICE_NAME
+              value: "gw"
+            - name: DD_TRACE_REPORT_HOSTNAME
+              value: "true"
+            - name: DD_ENTITY_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.uid
+            - name: DD_TAGS
+              value: "team:tgedr,project:microsvc-blueprint,api:gw,env:dev"
+            # micrometer-datadog variables
+            - name: MANAGEMENT_METRICS_EXPORT_DATADOG_ENABLED
+              value: "true"
+            - name: MANAGEMENT_METRICS_EXPORT_DATADOG_APIKEY
+              valueFrom:
+                secretKeyRef:
+                  name: datadog-secret
+                  key: api-key
+            - name: MANAGEMENT_METRICS_EXPORT_DATADOG_URI
+              value: "https://api.datadoghq.eu"
+            - name: MANAGEMENT_METRICS_EXPORT_DATADOG_STEP
+              value: "30s"
+            # metric tags
+            - name: MANAGEMENT_METRICS_TAGS_TEAM
+              value: "tgedr"
+            - name: MANAGEMENT_METRICS_TAGS_PROJECT
+              value: "microsvc-blueprint"
+            - name: MANAGEMENT_METRICS_TAGS_API
+              value: "gw"
+            - name: MANAGEMENT_METRICS_TAGS_ENV
+              value: "dev"
+            # solver variables
+            - name: SOLVER_URI
+              value: "http://solver.default.svc.cluster.local/api/problem"
+            # store variables
+            - name: AMAZON_DYNAMODB_ENDPOINT
+              value: "http://store.default.svc.cluster.local:8000"
+            - name: AMAZON_AWS_ACCESSKEY
+              value: "test1"
+            - name: AMAZON_AWS_SECRETKEY
+              value: "test231"
+            - name: SPRING_DATA_DYNAMODB_ENTITY2DDL_AUTO
+              value: "create"
+            - name: SPRING_DATA_DYNAMODB_ENTITY2DDL_GSIPROJECTIONTYPE
+              value: "ALL"
+            - name: SPRING_DATA_DYNAMODB_ENTITY2DDL_READCAPACITY
+              value: "10"
+            - name: SPRING_DATA_DYNAMODB_ENTITY2DDL_WRITECAPACITY
+              value: "1"
+          ports:
+            - name: http
+              containerPort: 9030
+              protocol: TCP

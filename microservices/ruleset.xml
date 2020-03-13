@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+
+<ruleset name="Custom Rules"
+    xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <description>
+        custom static analysis rules
+    </description>
+
+	<rule ref="category/java/bestpractices.xml">
+		
+  	</rule>
+  	<rule ref="category/java/codestyle.xml">
+  		<exclude name="MethodArgumentCouldBeFinal"/>
+  		<exclude name="LocalVariableCouldBeFinal"/>
+  		<exclude name="ControlStatementBraces"/>
+  		<exclude name="OnlyOneReturn"/>
+  		<exclude name="ConfusingTernary"/>
+  		<exclude name="AtLeastOneConstructor"/>
+  		<exclude name="AvoidFinalLocalVariable"/>
+  	</rule>
+  	<rule ref="category/java/design.xml">
+  		<exclude name="LawOfDemeter"/>
+  		<exclude name="NcssCount"/>
+  		<exclude name="CyclomaticComplexity"/>
+  		<exclude name="UseUtilityClass"/>
+  		<exclude name="AvoidCatchingGenericException"/>
+  		<exclude name="NPathComplexity"/>
+  		<exclude name="AvoidRethrowingException"/>
+  		<exclude name="DataClass"/>
+  		
+  		
+  	</rule>
+  	<rule ref="category/java/documentation.xml">
+  		<exclude name="CommentRequired"/>
+  		<exclude name="UncommentedEmptyConstructor"/>
+  	</rule>
+  	<rule ref="category/java/errorprone.xml">
+  		<exclude name="BeanMembersShouldSerialize"/>
+  		<exclude name="DataflowAnomalyAnalysis"/>
+  		<exclude name="AssignmentInOperand"/>
+  	</rule>
+  	<rule ref="category/java/multithreading.xml">
+  	</rule>
+  	<rule ref="category/java/performance.xml">
+  	</rule>
+  	<rule ref="category/java/security.xml">
+  	</rule>
+  	
+	<!--   	
+	<rule ref="category/java/design.xml/LawOfDemeter" >
+      <priority>5</priority>
+	</rule> 
+	<rule ref="category/java/design.xml/AvoidRethrowingException" >
+      <priority>5</priority>
+	</rule>
+	
+	<rule ref="category/java/design.xml/NcssCount" >
+      <priority>5</priority>
+	</rule> 
+	<rule ref="category/java/design.xml/NPathComplexity" >
+      <priority>4</priority>
+	</rule> 
+	<rule ref="category/java/design.xml/CyclomaticComplexity" >
+      <priority>4</priority>
+	</rule> 
+	<rule ref="category/java/design.xml/AvoidCatchingGenericException" >
+      <priority>5</priority>
+	</rule> 
+	<rule ref="category/java/errorprone.xml/BeanMembersShouldSerialize" >
+      <priority>5</priority>
+	</rule>
+	<rule ref="category/java/errorprone.xml/DataflowAnomalyAnalysis" >
+      <priority>4</priority>
+	</rule>
+	<rule ref="category/java/codestyle.xml/MethodArgumentCouldBeFinal" >
+      <priority>5</priority>
+	</rule> 
+	<rule ref="category/java/codestyle.xml/LocalVariableCouldBeFinal" >
+      <priority>5</priority>
+	</rule> 
+	-->
+
+</ruleset>
