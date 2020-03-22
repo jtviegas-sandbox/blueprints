@@ -1,4 +1,4 @@
-package com.tgedr.labs.microservices.blueprint.common.exceptions;
+package com.tgedr.labs.microservices.blueprint.common.services.state;
 
 public class StateManagerException extends Exception {
 

@@ -1,6 +1,5 @@
 package com.tgedr.labs.microservices.blueprint.common.services.state;
 
-import com.tgedr.labs.microservices.blueprint.common.exceptions.StateManagerException;
 import com.tgedr.labs.microservices.blueprint.model.Status;
 import com.tgedr.labs.microservices.blueprint.model.Task;
 import com.tgedr.labs.microservices.blueprint.store.exceptions.StoreException;
