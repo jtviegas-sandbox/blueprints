@@ -1,10 +1,8 @@
-package com.tgedr.labs.microservices.blueprint.store.service;
+package com.tgedr.labs.microservices.blueprint.store.impl.dynamodb;
 
 import com.tgedr.labs.microservices.blueprint.model.Task;
+import com.tgedr.labs.microservices.blueprint.store.Store;
 import com.tgedr.labs.microservices.blueprint.store.exceptions.StoreException;
-import com.tgedr.labs.microservices.blueprint.store.repository.dyndb.TaskDto2Entity;
-import com.tgedr.labs.microservices.blueprint.store.repository.dyndb.TaskDynDbRepository;
-import com.tgedr.labs.microservices.blueprint.store.repository.dyndb.TaskEntity2Dto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +30,7 @@ class DynDbStoreImpl implements Store {
 		log.trace("[getTask|in] ({})", taskId);
 		Optional<Task> result = null;
 		try {
-			Optional<com.tgedr.labs.microservices.blueprint.store.entity.dyndb.Task> r = repository.findById(taskId);
+			Optional<com.tgedr.labs.microservices.blueprint.store.impl.dynamodb.Task> r = repository.findById(taskId);
 			if( r.isPresent() )
 				result = Optional.of(entity2Dto.apply(r.get()));
 			else
@@ -49,7 +47,7 @@ class DynDbStoreImpl implements Store {
 		log.trace("[getTasks|in]");
 		Set<Task> result = new HashSet<>();
 		try {
-			for(com.tgedr.labs.microservices.blueprint.store.entity.dyndb.Task t:repository.findAll())
+			for(com.tgedr.labs.microservices.blueprint.store.impl.dynamodb.Task t:repository.findAll())
 				result.add(entity2Dto.apply(t));
 		} catch (Exception e) {
 			throw new StoreException(e);

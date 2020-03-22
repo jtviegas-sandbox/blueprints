@@ -1,10 +1,10 @@
-package com.tgedr.labs.microservices.blueprint;
+package com.tgedr.labs.microservices.blueprint.store.impl.dynamodb;
 
 
 import com.tgedr.labs.microservices.blueprint.model.Item;
 import com.tgedr.labs.microservices.blueprint.model.Problem;
 import com.tgedr.labs.microservices.blueprint.model.Task;
-import com.tgedr.labs.microservices.blueprint.store.service.Store;
+import com.tgedr.labs.microservices.blueprint.store.Store;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
 import org.junit.Assert;

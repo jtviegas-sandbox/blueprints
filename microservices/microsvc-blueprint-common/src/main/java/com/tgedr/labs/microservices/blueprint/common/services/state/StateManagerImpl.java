@@ -4,7 +4,7 @@ import com.tgedr.labs.microservices.blueprint.common.exceptions.StateManagerExce
 import com.tgedr.labs.microservices.blueprint.model.Status;
 import com.tgedr.labs.microservices.blueprint.model.Task;
 import com.tgedr.labs.microservices.blueprint.store.exceptions.StoreException;
-import com.tgedr.labs.microservices.blueprint.store.service.Store;
+import com.tgedr.labs.microservices.blueprint.store.Store;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

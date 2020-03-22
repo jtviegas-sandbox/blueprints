@@ -1,10 +1,6 @@
-package com.tgedr.labs.microservices.blueprint.store.repository.dyndb;
+package com.tgedr.labs.microservices.blueprint.store.impl.dynamodb;
 
 import com.tgedr.labs.microservices.blueprint.model.Status;
-import com.tgedr.labs.microservices.blueprint.store.entity.dyndb.Item;
-import com.tgedr.labs.microservices.blueprint.store.entity.dyndb.Problem;
-import com.tgedr.labs.microservices.blueprint.store.entity.dyndb.Solution;
-import com.tgedr.labs.microservices.blueprint.store.entity.dyndb.Task;
 
 
 import java.util.ArrayList;
@@ -12,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-public class TaskEntity2Dto implements Function <Task,com.tgedr.labs.microservices.blueprint.model.Task> {
+class TaskEntity2Dto implements Function <Task,com.tgedr.labs.microservices.blueprint.model.Task> {
     @Override
     public com.tgedr.labs.microservices.blueprint.model.Task apply(Task task) {
 

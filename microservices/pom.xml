@@ -20,6 +20,7 @@
     <modules>
         <module>microsvc-blueprint-model</module>
         <module>microsvc-blueprint-store</module>
+        <module>microsvc-blueprint-store-dynamodb</module>
         <module>microsvc-blueprint-common</module>
         <module>microsvc-blueprint-solver-api</module>
         <module>microsvc-blueprint-gw-api</module>

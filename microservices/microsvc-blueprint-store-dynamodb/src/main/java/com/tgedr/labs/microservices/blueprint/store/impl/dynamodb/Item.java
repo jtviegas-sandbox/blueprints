@@ -1,9 +1,9 @@
-package com.tgedr.labs.microservices.blueprint.store.entity.dyndb;
+package com.tgedr.labs.microservices.blueprint.store.impl.dynamodb;
 
 import lombok.Data;
 
 @Data
-public class Item {
+class Item {
 
     private Integer weight;
     private Integer value;

@@ -1,11 +1,11 @@
-package com.tgedr.labs.microservices.blueprint.store.entity.dyndb;
+package com.tgedr.labs.microservices.blueprint.store.impl.dynamodb;
 
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class Solution {
+class Solution {
 
 	private List<Item> items;
 	private Integer time;

@@ -1,4 +1,4 @@
-package com.tgedr.labs.microservices.blueprint.store.entity.dyndb;
+package com.tgedr.labs.microservices.blueprint.store.impl.dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIgnore;
 import lombok.Data;
@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class Problem {
+class Problem {
 
 	private Integer capacity;
 	private List<Item> items;

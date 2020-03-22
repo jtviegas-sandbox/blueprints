@@ -1,4 +1,4 @@
-package com.tgedr.labs.microservices.blueprint.store.entity.dyndb;
+package com.tgedr.labs.microservices.blueprint.store.impl.dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -29,7 +29,7 @@ public class Task {
 	@DynamoDBTypeConverted(converter = StatusMapTypeConverter.class)
 	private Map<Status,Long> statuses;
 
-	public static Task from(String id, Problem problem){
+	static Task from(String id, Problem problem){
 		Task task = new Task();
 		task.setId(id);
 		task.setProblem(problem);

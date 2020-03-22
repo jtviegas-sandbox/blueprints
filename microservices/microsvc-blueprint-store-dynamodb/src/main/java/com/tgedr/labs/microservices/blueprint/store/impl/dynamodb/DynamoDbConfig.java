@@ -1,11 +1,10 @@
-package com.tgedr.labs.microservices.blueprint.store;
+package com.tgedr.labs.microservices.blueprint.store.impl.dynamodb;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import org.apache.commons.lang3.StringUtils;
-import com.tgedr.labs.microservices.blueprint.store.repository.dyndb.TaskDynDbRepository;
 import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRepositories;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -14,8 +13,8 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan
-@EnableDynamoDBRepositories(basePackageClasses = {TaskDynDbRepository.class})
-public class StoreConfig {
+@EnableDynamoDBRepositories//(basePackages = {"com.tgedr.labs.microservices.blueprint.store.impl"})
+public class DynamoDbConfig {
 
     @Value("${amazon.dynamodb.endpoint}")
     private String amazonDynamoDBEndpoint;

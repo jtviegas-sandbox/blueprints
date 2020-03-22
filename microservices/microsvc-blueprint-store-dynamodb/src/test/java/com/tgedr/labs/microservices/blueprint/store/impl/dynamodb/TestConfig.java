@@ -1,4 +1,4 @@
-package com.tgedr.labs.microservices.blueprint;
+package com.tgedr.labs.microservices.blueprint.store.impl.dynamodb;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;

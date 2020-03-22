@@ -1,4 +1,4 @@
-package com.tgedr.labs.microservices.blueprint.store.service;
+package com.tgedr.labs.microservices.blueprint.store;
 
 import com.tgedr.labs.microservices.blueprint.model.Task;
 import com.tgedr.labs.microservices.blueprint.store.exceptions.StoreException;
