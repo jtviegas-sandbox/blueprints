@@ -21,6 +21,7 @@
         <module>microsvc-blueprint-model</module>
         <module>microsvc-blueprint-store</module>
         <module>microsvc-blueprint-store-dynamodb</module>
+        <module>microsvc-blueprint-services</module>
         <module>microsvc-blueprint-common</module>
         <module>microsvc-blueprint-solver-api</module>
         <module>microsvc-blueprint-gw-api</module>
@@ -45,9 +46,11 @@
         <aws.java.sdk.dynamodb.version>1.11.64</aws.java.sdk.dynamodb.version>
         <spring.data.dynamodb.version> 5.1.0</spring.data.dynamodb.version>
         <jacoco.version>0.8.5</jacoco.version>
-        <test.coverage>0.05</test.coverage>
         <micrometer.version>1.3.4</micrometer.version>
         <dd.trace.api.version>0.43.0</dd.trace.api.version>
+        <jmockit.version>1.24</jmockit.version>
+        <test.coverage>0.85</test.coverage>
+        <test.coverage.exclusion>**/*Boot.*,**/*Config.*,**/*Exception.*,**/model/*,**/store/**/entities/*</test.coverage.exclusion>
     </properties>
 
     <dependencies>
@@ -140,6 +143,12 @@
                 <artifactId>dd-trace-api</artifactId>
                 <version>${dd.trace.api.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.jmockit</groupId>
+                <artifactId>jmockit</artifactId>
+                <version>${jmockit.version}</version>
+                <scope>test</scope>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
@@ -192,7 +201,7 @@
                         <configuration>
                             <rules>
                                 <rule>
-                                    <element>PACKAGE</element>
+                                    <element>CLASS</element>
                                     <limits>
                                         <limit>
                                             <counter>LINE</counter>
@@ -203,12 +212,7 @@
                                 </rule>
                             </rules>
                             <excludes>
-                               <exclude>**/*Exception.*</exclude>
-                                <exclude>**/*Boot.*</exclude>
-                                <exclude>**/*Config.*</exclude>
-                                <exclude>**/StateManagerImpl.*</exclude>
-                                <exclude>**/KnapsackImpl.*</exclude>
-                                <exclude>**/ExceptionResponse.*</exclude>
+                                <exclude>${test.coverage.exclusion}</exclude>
                             </excludes>
                         </configuration>
                     </execution>

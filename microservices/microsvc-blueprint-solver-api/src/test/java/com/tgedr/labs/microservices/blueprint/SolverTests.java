@@ -1,7 +1,7 @@
 package com.tgedr.labs.microservices.blueprint;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tgedr.labs.microservices.blueprint.common.services.state.StateManager;
+import com.tgedr.labs.microservices.blueprint.services.statemanager.StateManager;
 import com.tgedr.labs.microservices.blueprint.model.Item;
 import com.tgedr.labs.microservices.blueprint.model.Problem;
 import org.apache.commons.lang3.RandomUtils;

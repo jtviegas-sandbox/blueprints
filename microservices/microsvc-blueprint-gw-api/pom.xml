@@ -26,7 +26,11 @@
 			<artifactId>microsvc-blueprint-common</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>com.tgedr.labs.microservices.blueprint</groupId>
+			<artifactId>microsvc-blueprint-services</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>

@@ -1,10 +1,10 @@
 package com.tgedr.labs.microservices.blueprint.api.resources;
 
 import com.tgedr.labs.microservices.blueprint.common.exceptions.ApiException;
-import com.tgedr.labs.microservices.blueprint.common.services.state.StateManagerException;
-import com.tgedr.labs.microservices.blueprint.common.services.knapsack.Knapsack;
-import com.tgedr.labs.microservices.blueprint.common.services.knapsack.KnapsackException;
-import com.tgedr.labs.microservices.blueprint.common.services.state.StateManager;
+import com.tgedr.labs.microservices.blueprint.services.statemanager.exceptions.StateManagerException;
+import com.tgedr.labs.microservices.blueprint.services.knapsack.Knapsack;
+import com.tgedr.labs.microservices.blueprint.services.knapsack.exceptions.KnapsackException;
+import com.tgedr.labs.microservices.blueprint.services.statemanager.StateManager;
 import com.tgedr.labs.microservices.blueprint.model.Problem;
 import com.tgedr.labs.microservices.blueprint.model.Status;
 import com.tgedr.labs.microservices.blueprint.model.Task;

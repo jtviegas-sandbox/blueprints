@@ -20,6 +20,10 @@ public class Solution implements Serializable {
 	@Positive
 	private final Integer time;
 
+	public static Solution from(final List<Item> items, final Integer time){
+		return new Solution(items,  time);
+	}
+
 	public Solution(final List<Item> items, final Integer time) {
 		this.items = ImmutableList.copyOf(items);
 		this.time = time;

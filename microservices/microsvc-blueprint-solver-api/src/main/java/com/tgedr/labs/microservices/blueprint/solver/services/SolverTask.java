@@ -1,7 +1,7 @@
 package com.tgedr.labs.microservices.blueprint.solver.services;
 
 import lombok.extern.slf4j.Slf4j;
-import com.tgedr.labs.microservices.blueprint.common.services.state.StateManager;
+import com.tgedr.labs.microservices.blueprint.services.statemanager.StateManager;
 import com.tgedr.labs.microservices.blueprint.model.Item;
 import com.tgedr.labs.microservices.blueprint.model.Solution;
 import com.tgedr.labs.microservices.blueprint.model.Status;

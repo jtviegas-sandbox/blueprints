@@ -36,17 +36,15 @@ public class Solver {
 
 	@RequestMapping(method = RequestMethod.POST)
 	@ApiOperation(value = "Used to post a knapsack problem", notes = "", response = Void.class)
-	@io.swagger.annotations.ApiResponses(value = {
-			@ApiResponse(code = 200, message = "successful operation", response = Void.class) })
+	@io.swagger.annotations.ApiResponses(value = {@ApiResponse(code = 200, message = "successful operation", response = Void.class) })
 	public ResponseEntity<String> postProblem(@RequestBody @Valid Problem problem) throws ApiException {
 		log.info("[postProblem|in] ({})", problem);
+		String id = null;
 		try {
-			String id = solver.solve(problem);
+			id = solver.solve(problem);
 			log.info("[postProblem] submitted task id: {} to solver", id);
 			return new ResponseEntity<String>(id, HttpStatus.OK);
-		} catch (Exception e) {
-			log.error("[postProblem] when trying to post problem to solver...", e);
-			throw new ApiException(e, HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (Exception e) { throw new ApiException(e, HttpStatus.INTERNAL_SERVER_ERROR);
 		} finally {
 			log.info("[postProblem|out]");
 		}
