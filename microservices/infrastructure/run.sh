@@ -96,7 +96,7 @@ kubeOn()
 
 }
 
-loadtest()
+performance()
 {
   which jmeter
   if [ ! "$?" -eq "0" ] ; then err "please install jmeter" && return 1; fi
@@ -177,8 +177,8 @@ usage()
       $(basename $0) {start|stop}
   inspect or port-forward a specific service
       $(basename $0) {inspect|forward} {store|solver|gw}
-  load test with jmeter
-      $(basename $0) loadtest
+  performance test with jmeter
+      $(basename $0) performance
   load errors test with jmeter
       $(basename $0) errortest
   setup datadog sli's and slo's
@@ -240,8 +240,8 @@ case "$1" in
               usage
           esac
           ;;
-        loadtest)
-          loadtest
+        performance)
+          performance
             ;;
         errortest)
           errortest
