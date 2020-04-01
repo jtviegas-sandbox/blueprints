@@ -42,7 +42,7 @@ metadata:
     project: microsvc-blueprint
     api: solver
 spec:
-  replicas: 2
+  replicas: 1
   strategy:
     type: RollingUpdate
   selector:
@@ -147,7 +147,7 @@ metadata:
     project: microsvc-blueprint
     api: gw
 spec:
-  replicas: 2
+  replicas: 1
   strategy:
     type: RollingUpdate
   selector:
@@ -239,6 +239,49 @@ spec:
               value: "10"
             - name: SPRING_DATA_DYNAMODB_ENTITY2DDL_WRITECAPACITY
               value: "1"
+            # rate limiting
+            - name: BUCKET4J_ENABLED
+              value: "true"
+            - name: BUCKET4J_FILTERS_0_FILTERMETHOD
+              value: "servlet"
+            - name: BUCKET4J_FILTERS_0_CACHENAME
+              value: "ratelimit"
+            - name: BUCKET4J_FILTERS_0_URL
+              value: "/api/tasks"
+            - name: BUCKET4J_FILTERS_0_RATELIMITS_0_BANDWIDTHS_0_CAPACITY
+              value: "20"
+            - name: BUCKET4J_FILTERS_0_RATELIMITS_0_BANDWIDTHS_0_TIME
+              value: "1"
+            - name: BUCKET4J_FILTERS_0_RATELIMITS_0_BANDWIDTHS_0_UNIT
+              value: "seconds"
+            - name: BUCKET4J_FILTERS_0_METRICS_TAGS_0_KEY
+              value: "IP"
+            - name: BUCKET4J_FILTERS_0_METRICS_TAGS_0_EXPRESSION
+              value: "getRemoteAddr()"
+            - name: BUCKET4J_FILTERS_0_METRICS_TAGS_1_KEY
+              value: "URL"
+            - name: BUCKET4J_FILTERS_0_METRICS_TAGS_1_EXPRESSION
+              value: "getRequestURI()"
+            - name: BUCKET4J_FILTERS_1_FILTERMETHOD
+              value: "servlet"
+            - name: BUCKET4J_FILTERS_1_CACHENAME
+              value: "ratelimit"
+            - name: BUCKET4J_FILTERS_1_URL
+              value: "/api/tasks/.*"
+            - name: BUCKET4J_FILTERS_1_RATELIMITS_0_BANDWIDTHS_0_CAPACITY
+              value: "40"
+            - name: BUCKET4J_FILTERS_1_RATELIMITS_0_BANDWIDTHS_0_TIME
+              value: "1"
+            - name: BUCKET4J_FILTERS_1_RATELIMITS_0_BANDWIDTHS_0_UNIT
+              value: "seconds"
+            - name: BUCKET4J_FILTERS_1_METRICS_TAGS_0_KEY
+              value: "IP"
+            - name: BUCKET4J_FILTERS_1_METRICS_TAGS_0_EXPRESSION
+              value: "getRemoteAddr()"
+            - name: BUCKET4J_FILTERS_1_METRICS_TAGS_1_KEY
+              value: "URL"
+            - name: BUCKET4J_FILTERS_1_METRICS_TAGS_1_EXPRESSION
+              value: "getRequestURI()"
           ports:
             - name: http
               containerPort: 9030

@@ -51,6 +51,8 @@
         <jmockit.version>1.24</jmockit.version>
         <test.coverage>0.85</test.coverage>
         <test.coverage.exclusion>**/*Boot.*,**/*Config.*,**/*Exception.*,**/model/*,**/store/**/entities/*</test.coverage.exclusion>
+        <!-- rate limiting -->
+        <bucket4j.sbs.version>0.2.0</bucket4j.sbs.version>
     </properties>
 
     <dependencies>
@@ -148,6 +150,11 @@
                 <artifactId>jmockit</artifactId>
                 <version>${jmockit.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.giffing.bucket4j.spring.boot.starter</groupId>
+                <artifactId>bucket4j-spring-boot-starter</artifactId>
+                <version>${bucket4j.sbs.version}</version>
             </dependency>
 
         </dependencies>
