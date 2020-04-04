@@ -49,6 +49,13 @@
 			<artifactId>dd-trace-api</artifactId>
 		</dependency>
 
+		<!-- ip throttling -->
+		<dependency>
+			<groupId>com.github.vladimir-bukhtoyarov</groupId>
+			<artifactId>bucket4j-core</artifactId>
+			<version>4.9.0</version>
+		</dependency>
+
 
 	</dependencies>
 

@@ -239,6 +239,10 @@ spec:
               value: "10"
             - name: SPRING_DATA_DYNAMODB_ENTITY2DDL_WRITECAPACITY
               value: "1"
+            - name: IP_THROTTLING_PATHRATEPERMINUTE
+              value: "/api/tasks:1200,/api/tasks/*:600"
+            - name: IP_THROTTLING_CLIENTRATEPERMINUTE
+              value: "400"
           ports:
             - name: http
               containerPort: 9030
