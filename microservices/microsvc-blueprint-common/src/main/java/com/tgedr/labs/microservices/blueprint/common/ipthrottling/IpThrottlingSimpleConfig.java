@@ -1,5 +1,6 @@
 package com.tgedr.labs.microservices.blueprint.common.ipthrottling;
 
+import com.google.common.base.Supplier;
 import io.github.bucket4j.Bandwidth;
 import io.github.bucket4j.Bucket;
 import io.github.bucket4j.Bucket4j;
@@ -12,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.time.Duration;
 import java.util.Set;
-import java.util.function.Supplier;
+
 
 import static java.lang.String.format;
 

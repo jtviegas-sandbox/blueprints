@@ -51,6 +51,8 @@
         <jmockit.version>1.24</jmockit.version>
         <test.coverage>0.85</test.coverage>
         <test.coverage.exclusion>**/*Boot.*,**/*Config.*,**/*Exception.*,**/model/*,**/store/**/entities/*</test.coverage.exclusion>
+        <bucket4j.version>4.9.0</bucket4j.version>
+        <guava.version>28.2-jre</guava.version>
     </properties>
 
     <dependencies>
@@ -148,6 +150,17 @@
                 <artifactId>jmockit</artifactId>
                 <version>${jmockit.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <!-- ip throttling -->
+            <dependency>
+                <groupId>com.github.vladimir-bukhtoyarov</groupId>
+                <artifactId>bucket4j-core</artifactId>
+                <version>${bucket4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
             </dependency>
 
         </dependencies>
