@@ -36,7 +36,7 @@
         <apiclient.version>0.0.4</apiclient.version>
         <yasson.version>1.0</yasson.version>
         <javax.json.version>1.1</javax.json.version>
-        <guava.version>25.1-jre</guava.version>
+        <guava.version>29.0-jre</guava.version>
         <javaee-api.version>8.0</javaee-api.version>
         <google-or-tools.version>6.7.2</google-or-tools.version>
         <lombok.version>1.18.10</lombok.version>
